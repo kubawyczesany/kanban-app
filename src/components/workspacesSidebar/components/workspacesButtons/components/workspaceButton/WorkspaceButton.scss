@@ -1,0 +1,22 @@
+.workspace-button {
+  width: 100%;
+  max-width: 278px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  background: #f4f7fe;
+  color: #001c39;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 16px;
+  box-shadow: none;
+  border: none;
+}

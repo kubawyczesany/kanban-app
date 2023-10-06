@@ -1,0 +1,19 @@
+.sidebar-menu-link {
+  display: flex;
+  align-items: center;
+}
+.sidebar-menu-link-icon {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin-left: 16px;
+}
+.sidebar-menu-link-name {
+  color: #b7bec5;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 18px;
+  margin-left: 16px;
+}
