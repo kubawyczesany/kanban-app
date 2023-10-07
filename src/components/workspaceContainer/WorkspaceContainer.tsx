@@ -1,10 +1,10 @@
 import "./WorkspaceContainer.scss";
-import { WorkspacesList } from "./WorkspacesList";
+import { Workspace } from "./components";
 
 export const WorkspaceContainer = () => {
   return (
     <div className="workspace-container">
-      <WorkspacesList />
+      <Workspace workspaceId={1} />
     </div>
   );
 };

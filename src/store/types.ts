@@ -1,21 +1,24 @@
-export interface WorkspaceInterface {
-  workspaces: { id: string; name: string; taskGroups: TaskGroup[] }[];
+export interface Workspace {
+  id: number;
+  name: string;
 }
+
 export interface TaskGroup {
   id: number;
   name: string;
-  tasks: Task[];
+  workspaceId: number;
 }
 
 export interface Task {
   id: number;
   name: string;
   completed: boolean;
-  subtasks: Subtask[];
+  taskGroupId: number;
 }
 
 export interface Subtask {
   id: number;
   name: string;
   completed: boolean;
+  taskId: number;
 }

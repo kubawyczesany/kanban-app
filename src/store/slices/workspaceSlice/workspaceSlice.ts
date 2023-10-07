@@ -1,31 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { WorkspaceInterface } from "../types";
+import { Workspace } from "../../types";
 
-const initialState: WorkspaceInterface = {
-  workspaces: [],
-};
+const initialState: Workspace[] = [
+  {
+    id: 0,
+    name: "Workspace number 1",
+  },
+];
 
 export const workspaceSlice = createSlice({
   name: "workspace",
   initialState,
   reducers: {
     addWorkspace: (state, action) => {
-      state.workspaces.push(action.payload);
+      const newWorkspace = action.payload;
+      state.push(newWorkspace);
     },
     updateWorkspace: (state, action) => {
       const { id, name } = action.payload;
-      const workspace = state.workspaces.find(
-        (workspace) => workspace.id === id
-      );
+      const workspace = state.find((workspace) => workspace.id === id);
       if (workspace) {
         workspace.name = name;
       }
     },
     deleteWorkspace: (state, action) => {
       const { id } = action.payload;
-      state.workspaces = state.workspaces.filter(
-        (workspace) => workspace.id !== id
-      );
+      return state.filter((workspace) => workspace.id !== id);
     },
   },
 });
