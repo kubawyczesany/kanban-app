@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../store/store";
 
 interface WorkspaceProps {
-  workspaceId: number;
+  workspaceId: number | null;
 }
 
 export const Workspace = ({ workspaceId }: WorkspaceProps) => {

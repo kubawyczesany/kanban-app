@@ -5,6 +5,7 @@ const initialState: Workspace[] = [
   {
     id: 0,
     name: "Workspace number 1",
+    isDisplayed: false,
   },
 ];
 
@@ -27,9 +28,18 @@ export const workspaceSlice = createSlice({
       const { id } = action.payload;
       return state.filter((workspace) => workspace.id !== id);
     },
+    setIsDisplayed: (state, action) => {
+      state.forEach((workspace) => {
+        workspace.isDisplayed = workspace.id === action.payload ? true : false;
+      });
+    },
   },
 });
 
-export const { addWorkspace, updateWorkspace, deleteWorkspace } =
-  workspaceSlice.actions;
+export const {
+  addWorkspace,
+  updateWorkspace,
+  deleteWorkspace,
+  setIsDisplayed,
+} = workspaceSlice.actions;
 export default workspaceSlice.reducer;
