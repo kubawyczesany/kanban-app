@@ -30,7 +30,11 @@ export const workspaceSlice = createSlice({
     },
     setIsDisplayed: (state, action) => {
       state.forEach((workspace) => {
-        workspace.isDisplayed = workspace.id === action.payload ? true : false;
+        if (workspace.id === action.payload) {
+          workspace.isDisplayed = true;
+        } else {
+          workspace.isDisplayed = false;
+        }
       });
     },
   },

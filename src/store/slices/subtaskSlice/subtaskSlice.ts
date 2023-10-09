@@ -8,6 +8,24 @@ const initialState: Subtask[] = [
     completed: false,
     taskId: 0,
   },
+  {
+    id: 0,
+    name: "Subtask number 1",
+    completed: false,
+    taskId: 1,
+  },
+  {
+    id: 0,
+    name: "Subtask number 1",
+    completed: false,
+    taskId: 2,
+  },
+  {
+    id: 0,
+    name: "Subtask number 1",
+    completed: false,
+    taskId: 3,
+  },
 ];
 
 export const subtaskSlice = createSlice({

@@ -1,0 +1,43 @@
+.create-task-group-button {
+  display: flex;
+  width: 100%;
+  max-width: 294px;
+  height: fit-content;
+  padding: 0px 12px 8px 10px;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  border-radius: 4px;
+  background-color: #f5f7fe;
+  &-text {
+    color: #88819f;
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 20px;
+  }
+  &-input {
+    display: flex;
+    width: 100%;
+    max-width: 278px;
+    height: fit-content;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    border-radius: 16px;
+    border: none;
+    background: #ecf1fd;
+    padding: 16px 8px 16px 16px;
+    outline: none;
+  }
+  &-input::placeholder {
+    color: #001c39;
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 18px;
+  }
+}

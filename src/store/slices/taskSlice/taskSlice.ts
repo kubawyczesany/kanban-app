@@ -8,6 +8,24 @@ const initialState: Task[] = [
     completed: false,
     taskGroupId: 0,
   },
+  {
+    id: 1,
+    name: "Task 2",
+    completed: false,
+    taskGroupId: 1,
+  },
+  {
+    id: 2,
+    name: "Task 3",
+    completed: false,
+    taskGroupId: 2,
+  },
+  {
+    id: 3,
+    name: "Task 4",
+    completed: false,
+    taskGroupId: 3,
+  },
 ];
 
 export const taskSlice = createSlice({
@@ -32,4 +50,5 @@ export const taskSlice = createSlice({
     // TODO task completed
   },
 });
+export const { addTask, updateTask, deleteTask } = taskSlice.actions;
 export default taskSlice.reducer;

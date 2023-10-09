@@ -7,6 +7,21 @@ const initialState: TaskGroup[] = [
     name: "Task Group 1",
     workspaceId: 0,
   },
+  {
+    id: 1,
+    name: "Task Group 2",
+    workspaceId: 0,
+  },
+  {
+    id: 2,
+    name: "Task Group 3",
+    workspaceId: 1,
+  },
+  {
+    id: 3,
+    name: "Task Group 4",
+    workspaceId: 1,
+  },
 ];
 
 export const taskGroupSlice = createSlice({
@@ -30,4 +45,6 @@ export const taskGroupSlice = createSlice({
     },
   },
 });
+export const { addTaskGroup, updateTaskGroup, deleteTaskGroup } =
+  taskGroupSlice.actions;
 export default taskGroupSlice.reducer;

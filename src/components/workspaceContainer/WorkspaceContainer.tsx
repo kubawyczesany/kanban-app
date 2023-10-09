@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 import "./WorkspaceContainer.scss";
-import { Workspace } from "./components";
+import { Workspace } from "./components/Workspace";
 import { RootState } from "../../store/store";
+import { CreateTaskGroupButton } from "./components/CreateTaskGroupButton";
 
 export const WorkspaceContainer = () => {
   const displayedWorkspaceId = useSelector((state: RootState) => {
@@ -13,6 +14,7 @@ export const WorkspaceContainer = () => {
   return (
     <div className="workspace-container">
       <Workspace workspaceId={displayedWorkspaceId} />
+      <CreateTaskGroupButton workspaceId={displayedWorkspaceId} />
     </div>
   );
 };

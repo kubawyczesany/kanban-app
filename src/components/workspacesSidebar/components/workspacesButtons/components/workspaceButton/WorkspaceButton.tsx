@@ -8,6 +8,11 @@ import "./WorkspaceButton.scss";
 export const WorkspaceButton = () => {
   const dispatch = useDispatch();
   const workspaces = useSelector((state: RootState) => state.workspace);
+
+  if (workspaces.length > 0 && !workspaces.some((w) => w.isDisplayed)) {
+    dispatch(setIsDisplayed(workspaces[0].id));
+  }
+
   const handleWorkspaceButtonClick = (workspaceId: number) => {
     dispatch(setIsDisplayed(workspaceId));
   };
