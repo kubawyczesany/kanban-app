@@ -1,53 +1,31 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Subtask } from "../../types";
 
-const initialState: Subtask[] = [
-  {
-    id: 0,
-    name: "Subtask number 1",
-    completed: false,
-    taskId: 0,
-  },
-  {
-    id: 0,
-    name: "Subtask number 1",
-    completed: false,
-    taskId: 1,
-  },
-  {
-    id: 0,
-    name: "Subtask number 1",
-    completed: false,
-    taskId: 2,
-  },
-  {
-    id: 0,
-    name: "Subtask number 1",
-    completed: false,
-    taskId: 3,
-  },
-];
+const initialState: Subtask[] = [];
 
 export const subtaskSlice = createSlice({
   name: "subtask",
   initialState,
   reducers: {
-    addTask: (state, action) => {
+    addSubtask: (state, action) => {
       const newSubtask = action.payload;
       state.push(newSubtask);
     },
-    updateTask: (state, action) => {
+    updateSubtask: (state, action) => {
       const { id, name } = action.payload;
       const subtask = state.find((subtask) => subtask.id === id);
       if (subtask) {
         subtask.name = name;
       }
     },
-    deleteTask: (state, action) => {
-      const { id } = action.payload;
-      return state.filter((subtask) => subtask.id !== id);
+    deleteSubtask: (state, action) => {
+      const { id, taskId } = action.payload;
+      return state.filter(
+        (subtask) => subtask.id !== id || subtask.taskId !== taskId
+      );
     },
-    // TODO subtask completed
   },
 });
+export const { addSubtask, updateSubtask, deleteSubtask } =
+  subtaskSlice.actions;
 export default subtaskSlice.reducer;

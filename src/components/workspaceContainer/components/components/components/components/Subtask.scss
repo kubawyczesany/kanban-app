@@ -1,0 +1,54 @@
+.subtask {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 262px;
+  height: auto;
+  border-radius: 8px;
+  gap: 8px;
+  background-color: #fff;
+  box-shadow: 0px 0px 1px 0px rgba(18, 3, 62, 0.1),
+    0px 1px 1px 0px rgba(18, 3, 62, 0.1);
+  margin: 8px 0px 8px 16px;
+  &-checkbox {
+    display: flex;
+    width: 12px;
+    height: 12px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    margin: 19px 0px 19px 16px;
+    padding: 0px;
+    border: 1px solid #d7d6df;
+    background: var(--grayscale-base-color, #fff);
+  }
+  &-content {
+    color: #001c39;
+    font-family: Inter;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18px;
+    // padding: 4px 16px 4px 0px;
+  }
+  &-update-icons {
+    display: none;
+    margin-right: 16px;
+    margin-left: auto;
+  }
+  &-edit-button {
+    background-color: #f8faff;
+    border: none;
+  }
+  &-delete-button {
+    background-color: #f8faff;
+    border: none;
+  }
+}
+.subtask:hover {
+  background-color: #f8faff;
+}
+.subtask:hover .subtask-update-icons {
+  display: flex;
+}

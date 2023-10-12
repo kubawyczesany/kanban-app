@@ -4,7 +4,7 @@ import { Workspace } from "../../types";
 const initialState: Workspace[] = [
   {
     id: 0,
-    name: "Workspace number 1",
+    name: "Workspace",
     isDisplayed: false,
   },
 ];

@@ -4,7 +4,7 @@
   height: 64px;
   flex-shrink: 0;
   border-radius: 8px;
-  background: #f4f7fe;
+  background: #fff;
   color: #001c39;
   font-family: Inter;
   font-size: 13px;
@@ -20,4 +20,7 @@
   box-shadow: none;
   border: none;
   margin-top: 8px;
+}
+.workspace-button.active {
+  background-color: #f4f7fe;
 }

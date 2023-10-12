@@ -1,32 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { Task } from "../../types";
 
-const initialState: Task[] = [
-  {
-    id: 0,
-    name: "Task 1",
-    completed: false,
-    taskGroupId: 0,
-  },
-  {
-    id: 1,
-    name: "Task 2",
-    completed: false,
-    taskGroupId: 1,
-  },
-  {
-    id: 2,
-    name: "Task 3",
-    completed: false,
-    taskGroupId: 2,
-  },
-  {
-    id: 3,
-    name: "Task 4",
-    completed: false,
-    taskGroupId: 3,
-  },
-];
+const initialState: Task[] = [];
 
 export const taskSlice = createSlice({
   name: "task",
@@ -44,10 +19,11 @@ export const taskSlice = createSlice({
       }
     },
     deleteTask: (state, action) => {
-      const { id } = action.payload;
-      return state.filter((task) => task.id !== id);
+      const { id, taskGroupId } = action.payload;
+      return state.filter(
+        (task) => task.id !== id || task.taskGroupId !== taskGroupId
+      );
     },
-    // TODO task completed
   },
 });
 export const { addTask, updateTask, deleteTask } = taskSlice.actions;

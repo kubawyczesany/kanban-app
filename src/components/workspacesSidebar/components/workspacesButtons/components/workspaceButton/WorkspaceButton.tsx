@@ -22,7 +22,9 @@ export const WorkspaceButton = () => {
       {workspaces &&
         workspaces.map((workspace: Workspace) => (
           <button
-            className="workspace-button"
+            className={`workspace-button ${
+              workspace.isDisplayed ? "active" : ""
+            }`}
             key={workspace.id}
             onClick={() => handleWorkspaceButtonClick(workspace.id)}
           >

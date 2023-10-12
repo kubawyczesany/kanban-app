@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../store/store";
-import { Task } from "../../../../../store/types";
+import { Task as TaskInterface } from "../../../../../store/types";
 import "./TaskGroup.scss";
 import { AddTask } from "../AddTask";
+import { Task } from "../components";
 
 interface TaskGroupProps {
   taskGroupId: number | null;
@@ -15,11 +16,14 @@ export const TaskGroup = ({ taskGroupId }: TaskGroupProps) => {
 
   return (
     <>
-      {task.map((task: Task) => (
-        <div key={task.id} className="task">
-          <p className="task-content">{task.name}</p>
-          {/* Display subtasks here */}
-        </div>
+      {task.map((task: TaskInterface) => (
+        <Task
+          key={task.id}
+          id={task.id}
+          name={task.name}
+          completed={task.completed}
+          taskGroupId={task.taskGroupId}
+        />
       ))}
       <AddTask taskGroupId={taskGroupId} />
     </>
