@@ -1,17 +1,16 @@
 import "./Task.scss";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../../store/store";
-import { Subtask as SubtaskInterface } from "../../../../../store/types";
 import { useMemo, useState } from "react";
-import { deleteTask, updateTask } from "../../../../../store/slices/taskSlice";
-import { ArrowDownIcon } from "../../../../../assets/icons/ArrowDownIcon/ArrowDownIcon";
-import { ArrowRightIcon } from "../../../../../assets/icons/ArrowRightIcon";
-import { iconStyle } from "./Task.iconStyles";
-import { EditIcon } from "../../../../../assets/icons/EditIcon";
-import { TrashIcon } from "../../../../../assets/icons/TrashIcon";
-import { Subtask } from "./components";
-import { PlusIcon } from "../../../../../assets/icons/PlusIcon";
-import { TaskTexts } from "./Task.texts";
+import { Subtask } from "../subtask";
+import { RootState } from "../../../../store/store";
+import { Subtask as SubtaskInterface } from "../../../../store/types";
+import { deleteTask, updateTask } from "../../../../store/slices/taskSlice";
+import { ArrowDownIcon } from "../../../../assets/icons/ArrowDownIcon";
+import { ArrowRightIcon } from "../../../../assets/icons/ArrowRightIcon";
+import { UpdateDeleteIcons } from "../../../../assets/icons/UpdateDeleteIcons";
+import { PlusIcon } from "../../../../assets/icons/PlusIcon";
+import { iconStyle } from "./TaskIconStyles";
+import { TaskTexts } from "./TaskTexts";
 
 interface TaskProps {
   id: number;
@@ -32,17 +31,27 @@ export const Task = ({ id, name, completed, taskGroupId }: TaskProps) => {
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newCompleted = event.target.checked;
-    const updateTaskPayload = {
+    const updateTaskCheckbox = {
       id: id,
       name: name,
       completed: newCompleted,
       taskGroupId: taskGroupId,
     };
-    dispatch(updateTask(updateTaskPayload));
+    dispatch(updateTask(updateTaskCheckbox));
     setIsTaskCompleted(newCompleted);
   };
   const handleTaskDelete = () => {
     dispatch(deleteTask({ id, taskGroupId }));
+  };
+  const handleTaskEdit = () => {
+    const updateTaskPayload = {
+      id: id,
+      name: name,
+      completed: completed,
+      taskGroupId: taskGroupId,
+    };
+    // TODO: solve separate double update handlers
+    dispatch(updateTask(updateTaskPayload));
   };
 
   return (
@@ -68,12 +77,10 @@ export const Task = ({ id, name, completed, taskGroupId }: TaskProps) => {
           onChange={handleCheckboxChange}
         />
         <p className="task-content">{name}</p>
-        <span className="task-update-icons">
-          <EditIcon style={iconStyle.edit} />
-          <button className="task-delete-button" onClick={handleTaskDelete}>
-            <TrashIcon style={iconStyle.trash} />
-          </button>
-        </span>
+        <UpdateDeleteIcons
+          onEditClick={handleTaskEdit}
+          onDeleteClick={handleTaskDelete}
+        />
       </span>
       {showSubtasks && (
         <div>

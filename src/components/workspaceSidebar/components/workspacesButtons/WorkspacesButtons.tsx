@@ -1,10 +1,10 @@
 import { AddWorkspaceButton } from "./components/addWorkspaceButton";
-import { WorkspaceButton } from "./components/workspaceButton";
+import { SelectWorkspaceButton } from "./components/selectWorkspaceButton";
 
 export const WorkspacesButtons = () => {
   return (
     <>
-      <WorkspaceButton />
+      <SelectWorkspaceButton />
       <AddWorkspaceButton />
     </>
   );

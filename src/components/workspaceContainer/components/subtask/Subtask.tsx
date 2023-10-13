@@ -1,13 +1,11 @@
 import { useState } from "react";
-import { EditIcon } from "../../../../../../assets/icons/EditIcon";
-import { TrashIcon } from "../../../../../../assets/icons/TrashIcon";
-import { iconStyle } from "../Task.iconStyles";
 import { useDispatch } from "react-redux";
+import "./Subtask.scss";
 import {
   deleteSubtask,
   updateSubtask,
-} from "../../../../../../store/slices/subtaskSlice";
-import "./Subtask.scss";
+} from "../../../../store/slices/subtaskSlice";
+import { UpdateDeleteIcons } from "../../../../assets/icons/UpdateDeleteIcons";
 
 interface SubtaskProps {
   taskId: number;
@@ -45,14 +43,10 @@ export const Subtask = ({ id, name, taskId, completed }: SubtaskProps) => {
         onChange={handleCheckboxChange}
       />
       <p className="subtask-content">{name}</p>
-      <span className="subtask-update-icons">
-        <button className="subtask-edit-button">
-          <EditIcon style={iconStyle.edit} />
-        </button>
-        <button className="subtask-delete-button" onClick={handleDeleteClick}>
-          <TrashIcon style={iconStyle.trash} />
-        </button>
-      </span>
+      <UpdateDeleteIcons
+        onEditClick={() => undefined}
+        onDeleteClick={handleDeleteClick}
+      />
     </span>
   );
 };

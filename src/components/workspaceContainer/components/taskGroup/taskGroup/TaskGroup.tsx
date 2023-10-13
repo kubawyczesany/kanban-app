@@ -1,9 +1,9 @@
 import { useSelector } from "react-redux";
+import "./TaskGroup.scss";
+import { AddTask } from "../../task/components";
+import { Task } from "../../task";
 import { RootState } from "../../../../../store/store";
 import { Task as TaskInterface } from "../../../../../store/types";
-import "./TaskGroup.scss";
-import { AddTask } from "../AddTask";
-import { Task } from "../components";
 
 interface TaskGroupProps {
   taskGroupId: number | null;

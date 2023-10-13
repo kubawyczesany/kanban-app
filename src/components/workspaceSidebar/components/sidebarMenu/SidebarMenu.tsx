@@ -1,9 +1,9 @@
 import { DashboardMenuIcon } from "../../../../assets/icons/DashboardMenuIcon";
 import { BoardsMenuIcon } from "../../../../assets/icons/BoardsMenuIcon";
-import { SidebarMenuDivider } from "./components/components";
 import { ProfileMenuIcon } from "../../../../assets/icons/ProfileMenuIcon";
 import { SearchMenuIcon } from "../../../../assets/icons/SearchMenuIcon";
-import { SidebarMenuLinks } from "./components";
+import { SidebarMenuDivider } from "./components/sidebarMenuDivider";
+import { SidebarMenuLinks } from "./components/sidebarMenuLinks";
 
 const menuList = [
   { icon: <DashboardMenuIcon />, name: "Dashboard" },

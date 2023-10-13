@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { TaskGroup as TaskGroupInterface } from "../../../../store/types";
 import "./Workspace.scss";
-import { TaskGroup } from "../components/TaskGroup";
+import { TaskGroup } from "../taskGroup/taskGroup";
 
 interface WorkspaceProps {
   workspaceId: number | null;

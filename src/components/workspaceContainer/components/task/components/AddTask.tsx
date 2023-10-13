@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { AddTaskTexts } from "./AddTask.texts";
-import { PlusIcon } from "../../../../../assets/icons/PlusIcon";
 import { iconStyle } from "./AddTask.iconStyles";
 import "./AddTask.scss";
 import { useDispatch } from "react-redux";
 import { addTask } from "../../../../../store/slices/taskSlice";
 import { CloseIcon } from "../../../../../assets/icons/CloseIcon";
+import { PlusIcon } from "../../../../../assets/icons/PlusIcon";
 
 interface AddTaskProps {
   taskGroupId: number | null;

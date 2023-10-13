@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
-import { PlusIcon } from "../../../../assets/icons/PlusIcon";
-import { addTaskGroup } from "../../../../store/slices/taskGroupSlice";
 import "./CreateTaskGroupButton.scss";
 import { useState } from "react";
 import { iconStyle } from "./CreateTaskGroupButton.iconStyle";
 import { CreateTaskGroupButtonTexts } from "./CreateTaskGroupButton.texts";
-import { CloseIcon } from "../../../../assets/icons/CloseIcon";
+import { addTaskGroup } from "../../../../../store/slices/taskGroupSlice";
+import { CloseIcon } from "../../../../../assets/icons/CloseIcon";
+import { PlusIcon } from "../../../../../assets/icons/PlusIcon";
 
 interface CreateTaskGroupButtonProps {
   workspaceId: number | null;
@@ -48,7 +48,6 @@ export const CreateTaskGroupButton = ({
   const handleInputFocus = () => {
     setIsInputFocused(true);
   };
-
   const handleInputBlur = () => {
     setIsInputFocused(false);
   };

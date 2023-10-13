@@ -3,9 +3,9 @@ import { RootState } from "../../../../../../store/store";
 import { Workspace } from "../../../../../../store/types";
 import { WorkspaceButtonIcon } from "../../../../../../assets/icons/WorkspaceButtonIcon";
 import { setIsDisplayed } from "../../../../../../store/slices/workspaceSlice";
-import "./WorkspaceButton.scss";
+import "./SelectWorkspaceButton.scss";
 
-export const WorkspaceButton = () => {
+export const SelectWorkspaceButton = () => {
   const dispatch = useDispatch();
   const workspaces = useSelector((state: RootState) => state.workspace);
 
