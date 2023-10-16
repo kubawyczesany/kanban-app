@@ -24,3 +24,7 @@
 .workspace-button.active {
   background-color: #f4f7fe;
 }
+.workspace-button:hover .icons {
+  display: flex;
+  margin-right: 0px;
+}

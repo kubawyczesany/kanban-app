@@ -20,7 +20,7 @@ export const WorkspaceContainer = () => {
 
   return (
     <div className="workspace-container">
-      <Workspace workspaceId={memoizedDisplayedWorkspaceId} />
+      <Workspace workspaceId={memoizedDisplayedWorkspaceId as number} />
       <CreateTaskGroupButton workspaceId={memoizedDisplayedWorkspaceId} />
     </div>
   );

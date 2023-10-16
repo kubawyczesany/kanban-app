@@ -17,6 +17,7 @@
   font-weight: 600;
   line-height: 18px;
   padding-left: 8px;
+  overflow-wrap: break-word;
 }
 .task-group-header {
   display: flex;
@@ -32,4 +33,7 @@
 .task-group:hover .task-group-header .icons-button-edit,
 .task-group:hover .task-group-header .icons-button-delete {
   background-color: #ecf1fd;
+}
+.task-group:hover .task-counter-content {
+  display: none;
 }

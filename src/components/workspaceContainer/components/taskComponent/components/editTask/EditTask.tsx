@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { updateTask } from "../../../../../../store/slices/taskSlice";
 import { EditTaskTexts } from "./EditTaskTexts";
@@ -20,43 +20,48 @@ export const EditTask = ({
   const [taskName, setTaskName] = useState(name);
   const [isTaskNameValid, setIsTaskNameValid] = useState(true);
   const [isInputFocused, setIsInputFocused] = useState(false);
+  const [isChecked, setIsChecked] = useState(completed);
   const dispatch = useDispatch();
+
+  const handleOnKeyDown = useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        handleEditTask();
+      }
+    },
+    []
+  );
+
+  const handleEditTask = useCallback(() => {
+    dispatch(
+      updateTask({
+        id: id,
+        name: taskName,
+        completed: isChecked,
+        taskGroupId: taskGroupId,
+      })
+    );
+    setIsTaskNameValid(true);
+    onCloseButtonClick();
+  }, [dispatch, id, isChecked, onCloseButtonClick, taskGroupId, taskName]);
+
+  const handleInputFocus = useCallback(() => {
+    setIsInputFocused(true);
+  }, []);
+
+  const handleInputBlur = useCallback(() => {
+    setIsInputFocused(false);
+  }, []);
+
+  const handleCheckboxChange = useCallback(() => {
+    setIsChecked((isChecked) => !isChecked);
+  }, []);
 
   useEffect(() => {
     setTaskName(name);
-  }, [name]);
-
-  const handleOnKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === "Enter") {
-      event.preventDefault();
-      handleEditTask();
-    }
-  };
-
-  const handleEditTask = () => {
-    if (taskName.trim() !== "") {
-      dispatch(
-        updateTask({
-          id: id,
-          name: taskName,
-          completed: completed,
-          taskGroupId: taskGroupId,
-        })
-      );
-      setIsTaskNameValid(true);
-      onCloseButtonClick();
-    } else {
-      setIsTaskNameValid(false);
-      setTaskName("");
-    }
-  };
-  const handleInputFocus = () => {
-    setIsInputFocused(true);
-  };
-
-  const handleInputBlur = () => {
-    setIsInputFocused(false);
-  };
+    setIsChecked(completed);
+  }, [name, completed]);
 
   return (
     <>
@@ -66,6 +71,8 @@ export const EditTask = ({
             type="checkbox"
             className="add-task-checkbox"
             id="add-task-checkbox"
+            checked={isChecked}
+            onChange={handleCheckboxChange}
           />
           <input
             type="text"

@@ -1,6 +1,5 @@
 import "./Task.scss";
 import { useDispatch } from "react-redux";
-import { useState } from "react";
 import { deleteTask, updateTask } from "../../../../store/slices/taskSlice";
 import { ArrowDownIcon } from "../../../../assets/icons/ArrowDownIcon";
 import { ArrowRightIcon } from "../../../../assets/icons/ArrowRightIcon";
@@ -8,6 +7,7 @@ import { UpdateDeleteIcons } from "../../../../assets/icons/UpdateDeleteIcons";
 import { iconStyle } from "./TaskIconStyles";
 import { SubtaskList } from "../subtask/components/subtaskList/SubtaskList";
 import { EditTask } from "./components/editTask/EditTask";
+import { useEffect, useState } from "react";
 
 interface TaskProps {
   id: number;
@@ -18,26 +18,29 @@ interface TaskProps {
 
 export const Task = ({ id, name, completed, taskGroupId }: TaskProps) => {
   const dispatch = useDispatch();
-  const [isTaskCompleted, setIsTaskCompleted] = useState(completed);
   const [showEditInput, setShowEditInput] = useState(false);
   const [showSubtasks, setShowSubtasks] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
 
-  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newCompleted = event.target.checked;
-    const updateTaskCheckbox = {
-      id: id,
-      name: name,
-      completed: newCompleted,
-      taskGroupId: taskGroupId,
-    };
-    dispatch(updateTask(updateTaskCheckbox));
-    setIsTaskCompleted(newCompleted);
-  };
+  useEffect(() => {
+    dispatch(
+      updateTask({
+        id: id,
+        name: name,
+        completed: isChecked,
+        taskGroupId: taskGroupId,
+      })
+    );
+  }, [dispatch, id, isChecked, name, taskGroupId]);
+
   const handleTaskDelete = () => {
     dispatch(deleteTask({ id, taskGroupId }));
   };
   const handleShowEditInput = () => {
     setShowEditInput(!showEditInput);
+  };
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
   };
 
   return (
@@ -68,7 +71,7 @@ export const Task = ({ id, name, completed, taskGroupId }: TaskProps) => {
             type="checkbox"
             className="task-checkbox"
             id={`task-checkbox-${id}`}
-            checked={isTaskCompleted}
+            checked={isChecked}
             onChange={handleCheckboxChange}
           />
           <p className="task-content">{name}</p>

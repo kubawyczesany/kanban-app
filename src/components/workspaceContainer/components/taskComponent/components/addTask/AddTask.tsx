@@ -47,6 +47,7 @@ export const AddTask = ({ taskGroupId }: AddTaskProps) => {
       dispatch(addTask(newTask));
       setTaskName("");
       setIsTaskNameValid(true);
+      handleButtonClick();
     } else {
       setIsTaskNameValid(false);
     }

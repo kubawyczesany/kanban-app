@@ -12,12 +12,14 @@ export const taskSlice = createSlice({
       state.push(newTask);
     },
     updateTask: (state, action) => {
-      const { id, name } = action.payload;
+      const { id, name, completed } = action.payload;
       const task = state.find((task) => task.id === id);
       if (task) {
         task.name = name;
+        task.completed = completed;
       }
     },
+
     deleteTask: (state, action) => {
       const { id, taskGroupId } = action.payload;
       return state.filter(

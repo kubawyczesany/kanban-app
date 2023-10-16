@@ -1,13 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../../../store/store";
-import { Workspace } from "../../../../../../store/types";
-import { WorkspaceButtonIcon } from "../../../../../../assets/icons/WorkspaceButtonIcon";
-import { setIsDisplayed } from "../../../../../../store/slices/workspaceSlice";
+import {
+  setIsDisplayed,
+  deleteWorkspace,
+} from "../../../../../../store/slices/workspaceSlice";
 import "./SelectWorkspaceButton.scss";
+import { EditWorkspace } from "./components";
+import { useState } from "react";
+import { SelectWorkspaceDragAndDrop } from "./components/selectWorkspaceDragAndDrop";
 
 export const SelectWorkspaceButton = () => {
   const dispatch = useDispatch();
   const workspaces = useSelector((state: RootState) => state.workspace);
+  const [showEditWorkspace, setShowEditWorkspace] = useState(false);
+  const [editWorkspaceId, setEditWorkspaceId] = useState<number | null>(null);
 
   if (workspaces.length > 0 && !workspaces.some((w) => w.isDisplayed)) {
     dispatch(setIsDisplayed(workspaces[0].id));
@@ -17,20 +23,44 @@ export const SelectWorkspaceButton = () => {
     dispatch(setIsDisplayed(workspaceId));
   };
 
+  const handleDeleteWorkspace = (id: number) => {
+    dispatch(deleteWorkspace({ id }));
+  };
+
+  const handleShowEditWorkspace = (id: number) => {
+    setEditWorkspaceId(id);
+    setShowEditWorkspace(!showEditWorkspace);
+  };
+
   return (
     <>
       {workspaces &&
-        workspaces.map((workspace: Workspace) => (
-          <button
-            className={`workspace-button ${
-              workspace.isDisplayed ? "active" : ""
-            }`}
-            key={workspace.id}
-            onClick={() => handleWorkspaceButtonClick(workspace.id)}
-          >
-            <WorkspaceButtonIcon />
-            {workspace.name}
-          </button>
+        workspaces.map((workspace) => (
+          <div key={workspace.id}>
+            {showEditWorkspace && editWorkspaceId === workspace.id ? (
+              <EditWorkspace
+                key={workspace.id}
+                workspace={workspace}
+                onCloseButtonClick={() =>
+                  handleShowEditWorkspace(editWorkspaceId)
+                }
+              />
+            ) : (
+              <SelectWorkspaceDragAndDrop
+                key={workspace.id}
+                workspace={workspace}
+                handleWorkspaceButtonClick={() =>
+                  handleWorkspaceButtonClick(workspace.id)
+                }
+                handleDeleteWorkspace={() =>
+                  handleDeleteWorkspace(workspace.id)
+                }
+                handleShowEditWorkspace={() =>
+                  handleShowEditWorkspace(workspace.id)
+                }
+              />
+            )}
+          </div>
         ))}
     </>
   );

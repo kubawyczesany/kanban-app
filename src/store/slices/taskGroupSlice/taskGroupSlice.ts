@@ -19,8 +19,11 @@ export const taskGroupSlice = createSlice({
       }
     },
     deleteTaskGroup: (state, action) => {
-      const { id } = action.payload;
-      return state.filter((taskGroup) => taskGroup.id !== id);
+      const { id, workspaceId } = action.payload;
+      return state.filter(
+        (taskGroup) =>
+          taskGroup.id !== id || taskGroup.workspaceId !== workspaceId
+      );
     },
   },
 });

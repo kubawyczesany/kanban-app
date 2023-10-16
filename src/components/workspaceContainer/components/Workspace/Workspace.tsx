@@ -1,11 +1,13 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { TaskGroup as TaskGroupInterface } from "../../../../store/types";
 import "./Workspace.scss";
-import { TaskGroup } from "../taskGroup/taskGroup";
-import { useMemo, useState } from "react";
+import { TaskGroup } from "../taskGroup/taskGroupComponent";
+import { useCallback, useMemo, useState } from "react";
 import { UpdateDeleteIcons } from "../../../../assets/icons/UpdateDeleteIcons";
-import { EditTaskGroup } from "../TaskGroup/TaskGroup/components";
+import { EditTaskGroup } from "../taskGroup/taskGroupComponent/components";
+import { deleteTaskGroup } from "../../../../store/slices/taskGroupSlice";
+import { TaskCounter } from "../taskCounter/TaskCounter";
 
 interface WorkspaceProps {
   workspaceId: number;
@@ -15,45 +17,67 @@ export const Workspace = ({ workspaceId }: WorkspaceProps) => {
   const taskGroups = useSelector((state: RootState) =>
     state.taskGroup.filter((taskGroup) => taskGroup.workspaceId === workspaceId)
   );
-
   const [editTaskGroupId, setEditTaskGroupId] = useState<number | null>(null);
+  const [showEditTaskGroup, setShowEditTaskGroup] = useState(false);
+  const dispatch = useDispatch();
 
   const handleEditTaskGroupClick = (id: number) => {
     setEditTaskGroupId(id);
+    setShowEditTaskGroup(true);
   };
 
   const handleCloseEditTaskGroup = () => {
     setEditTaskGroupId(null);
+    setShowEditTaskGroup(false);
   };
+  const handleDeleteClick = useCallback(
+    (id: number, workspaceId: number) => {
+      dispatch(deleteTaskGroup({ id, workspaceId }));
+    },
+    [dispatch]
+  );
 
   const memoizedTaskGroups = useMemo(
     () =>
       taskGroups.map((taskGroup: TaskGroupInterface) => (
-        <div key={taskGroup.id} className="task-group">
-          <span className="task-group-header">
-            <p className="task-group-name">{taskGroup.name}</p>
-            <UpdateDeleteIcons
-              onEditClick={() => handleEditTaskGroupClick(taskGroup.id)}
-              onDeleteClick={() => undefined}
-            />
-          </span>
-          {editTaskGroupId === taskGroup.id ? (
-            <EditTaskGroup
-              onCloseButtonClick={handleCloseEditTaskGroup}
-              id={taskGroup.id}
-              name={taskGroup.name}
-              workspaceId={workspaceId}
-            />
+        <div key={taskGroup.id}>
+          {editTaskGroupId === taskGroup.id && showEditTaskGroup ? (
+            <div key={taskGroup.id} className="task-group">
+              <EditTaskGroup
+                onCloseButtonClick={handleCloseEditTaskGroup}
+                id={taskGroup.id}
+                name={taskGroup.name}
+                workspaceId={workspaceId}
+              />
+            </div>
           ) : (
-            <TaskGroup
-              id={taskGroup.id}
-              name={taskGroup.name}
-              workspaceId={workspaceId}
-            />
+            <div key={taskGroup.id} className="task-group">
+              <span className="task-group-header">
+                <p className="task-group-name">{taskGroup.name}</p>
+                <TaskCounter groupId={taskGroup.id} />
+                <UpdateDeleteIcons
+                  onEditClick={() => handleEditTaskGroupClick(taskGroup.id)}
+                  onDeleteClick={() =>
+                    handleDeleteClick(taskGroup.id, workspaceId)
+                  }
+                />
+              </span>
+              <TaskGroup
+                id={taskGroup.id}
+                name={taskGroup.name}
+                workspaceId={workspaceId}
+              />
+            </div>
           )}
         </div>
       )),
-    [taskGroups, workspaceId, editTaskGroupId]
+    [
+      taskGroups,
+      workspaceId,
+      editTaskGroupId,
+      handleDeleteClick,
+      showEditTaskGroup,
+    ]
   );
 
   return <>{memoizedTaskGroups}</>;
