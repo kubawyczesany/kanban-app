@@ -5,7 +5,7 @@ import {
   deleteWorkspace,
 } from "../../../../../../store/slices/workspaceSlice";
 import "./SelectWorkspaceButton.scss";
-import { EditWorkspace } from "./components";
+import { EditWorkspace } from "./components/editWorkspaceComponent";
 import { useState } from "react";
 import { SelectWorkspaceDragAndDrop } from "./components/selectWorkspaceDragAndDrop";
 

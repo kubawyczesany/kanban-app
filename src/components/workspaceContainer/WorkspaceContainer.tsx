@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import "./WorkspaceContainer.scss";
 import { RootState } from "../../store/store";
-import { CreateTaskGroupButton } from "./components/taskGroup/createTaskGroupButton";
+import { CreateTaskGroupButton } from "./components/taskGroupContainer/createTaskGroupButton";
 import { Workspace } from "./components/workspace/Workspace";
 import { useMemo } from "react";
 

@@ -5,7 +5,7 @@ import { ArrowDownIcon } from "../../../../assets/icons/ArrowDownIcon";
 import { ArrowRightIcon } from "../../../../assets/icons/ArrowRightIcon";
 import { UpdateDeleteIcons } from "../../../../assets/icons/UpdateDeleteIcons";
 import { iconStyle } from "./TaskIconStyles";
-import { SubtaskList } from "../subtask/components/subtaskList/SubtaskList";
+import { SubtaskList } from "../subtaskComponent/components/subtaskList/SubtaskList";
 import { EditTask } from "./components/editTask/EditTask";
 import { useEffect, useState } from "react";
 

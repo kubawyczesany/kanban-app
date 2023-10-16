@@ -2,10 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store/store";
 import { TaskGroup as TaskGroupInterface } from "../../../../store/types";
 import "./Workspace.scss";
-import { TaskGroup } from "../taskGroup/taskGroupComponent";
+import { TaskGroup } from "../taskGroupContainer/taskGroupComponent";
 import { useCallback, useMemo, useState } from "react";
 import { UpdateDeleteIcons } from "../../../../assets/icons/UpdateDeleteIcons";
-import { EditTaskGroup } from "../taskGroup/taskGroupComponent/components";
+import { EditTaskGroup } from "../taskGroupContainer/taskGroupComponent/components";
 import { deleteTaskGroup } from "../../../../store/slices/taskGroupSlice";
 import { TaskCounter } from "../taskCounter/TaskCounter";
 

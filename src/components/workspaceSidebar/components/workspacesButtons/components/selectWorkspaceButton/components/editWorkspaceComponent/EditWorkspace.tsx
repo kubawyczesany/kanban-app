@@ -1,11 +1,11 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-import { Workspace } from "../../../../../../../store/types";
-import { updateWorkspace } from "../../../../../../../store/slices/workspaceSlice";
-import { WorkspaceButtonIcon } from "../../../../../../../assets/icons/WorkspaceButtonIcon";
-import { texts } from "../../addWorkspaceButton/AddWorkspaceButton.texts";
-import { TickIcon } from "../../../../../../../assets/icons/TickIcon";
-import { tickIconStyle } from "../../addWorkspaceButton/AddWorkspaceButton.iconsStyles";
+import { Workspace } from "../../../../../../../../store/types";
+import { updateWorkspace } from "../../../../../../../../store/slices/workspaceSlice";
+import { WorkspaceButtonIcon } from "../../../../../../../../assets/icons/WorkspaceButtonIcon";
+import { texts } from "../../../addWorkspaceButton/AddWorkspaceButton.texts";
+import { TickIcon } from "../../../../../../../../assets/icons/TickIcon";
+import { tickIconStyle } from "../../../addWorkspaceButton/AddWorkspaceButton.iconsStyles";
 
 interface EditWorkspaceProps {
   workspace: Workspace;
