@@ -6,6 +6,7 @@ import {
   updateSubtask,
 } from "../../../../store/slices/subtaskSlice";
 import { UpdateDeleteIcons } from "../../../../assets/icons/UpdateDeleteIcons";
+import { EditSubtask } from "./components/editSubtask";
 
 interface SubtaskProps {
   taskId: number;
@@ -16,6 +17,7 @@ interface SubtaskProps {
 
 export const Subtask = ({ id, name, taskId, completed }: SubtaskProps) => {
   const [isSubtaskCompleted, setIsSubtaskCompleted] = useState(completed);
+  const [showEditInput, setShowEditInput] = useState(false);
   const dispatch = useDispatch();
 
   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -32,21 +34,38 @@ export const Subtask = ({ id, name, taskId, completed }: SubtaskProps) => {
   const handleDeleteClick = () => {
     dispatch(deleteSubtask({ id, taskId }));
   };
+  const handleShowEditInput = () => {
+    setShowEditInput(!showEditInput);
+  };
 
   return (
-    <span key={id} className="subtask">
-      <input
-        type="checkbox"
-        className="subtask-checkbox"
-        id={`subtask-checkbox-${id}`}
-        checked={isSubtaskCompleted}
-        onChange={handleCheckboxChange}
-      />
-      <p className="subtask-content">{name}</p>
-      <UpdateDeleteIcons
-        onEditClick={() => undefined}
-        onDeleteClick={handleDeleteClick}
-      />
-    </span>
+    <>
+      {showEditInput ? (
+        <EditSubtask
+          onCloseButtonClick={handleShowEditInput}
+          id={id}
+          name={name}
+          completed={completed}
+          taskId={taskId}
+        />
+      ) : (
+        <span className="subtask">
+          <input
+            type="checkbox"
+            className="subtask-checkbox"
+            id={`subtask-checkbox-${id}`}
+            checked={isSubtaskCompleted}
+            onChange={handleCheckboxChange}
+          />
+          <p className="subtask-content">{name}</p>
+          <span className="subtask-icons">
+            <UpdateDeleteIcons
+              onEditClick={handleShowEditInput}
+              onDeleteClick={handleDeleteClick}
+            />
+          </span>
+        </span>
+      )}
+    </>
   );
 };

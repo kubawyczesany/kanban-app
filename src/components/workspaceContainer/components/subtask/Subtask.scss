@@ -9,7 +9,7 @@
   background-color: #fff;
   box-shadow: 0px 0px 1px 0px rgba(18, 3, 62, 0.1),
     0px 1px 1px 0px rgba(18, 3, 62, 0.1);
-  margin: 8px 0px 8px 16px;
+  margin: 8px 0px 0px 16px;
   &-checkbox {
     display: flex;
     width: 12px;
@@ -30,25 +30,15 @@
     font-style: normal;
     font-weight: 400;
     line-height: 18px;
-    // padding: 4px 16px 4px 0px;
   }
-  &-update-icons {
-    display: none;
-    margin-right: 16px;
+  &-icons {
+    display: flex;
     margin-left: auto;
-  }
-  &-edit-button {
-    background-color: #f8faff;
-    border: none;
-  }
-  &-delete-button {
-    background-color: #f8faff;
-    border: none;
   }
 }
 .subtask:hover {
   background-color: #f8faff;
 }
-.subtask:hover .subtask-update-icons {
+.subtask:hover .icons {
   display: flex;
 }

@@ -2,7 +2,7 @@
   width: 100%;
   max-width: 294px;
   height: fit-content;
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
   border-radius: 16px;
@@ -17,4 +17,19 @@
   font-weight: 600;
   line-height: 18px;
   padding-left: 8px;
+}
+.task-group-header {
+  display: flex;
+  width: 278px;
+  padding-left: 0px;
+  justify-content: space-between;
+  align-items: center;
+}
+.task-group:hover .task-group-header > .icons {
+  display: flex;
+}
+
+.task-group:hover .task-group-header .icons-button-edit,
+.task-group:hover .task-group-header .icons-button-delete {
+  background-color: #ecf1fd;
 }

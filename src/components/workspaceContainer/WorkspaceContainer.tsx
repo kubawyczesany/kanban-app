@@ -3,6 +3,7 @@ import "./WorkspaceContainer.scss";
 import { RootState } from "../../store/store";
 import { CreateTaskGroupButton } from "./components/taskGroup/createTaskGroupButton";
 import { Workspace } from "./components/workspace/Workspace";
+import { useMemo } from "react";
 
 export const WorkspaceContainer = () => {
   const displayedWorkspaceId = useSelector((state: RootState) => {
@@ -11,10 +12,16 @@ export const WorkspaceContainer = () => {
     );
     return workspace ? workspace.id : null;
   });
+
+  const memoizedDisplayedWorkspaceId = useMemo(
+    () => displayedWorkspaceId,
+    [displayedWorkspaceId]
+  );
+
   return (
     <div className="workspace-container">
-      <Workspace workspaceId={displayedWorkspaceId} />
-      <CreateTaskGroupButton workspaceId={displayedWorkspaceId} />
+      <Workspace workspaceId={memoizedDisplayedWorkspaceId} />
+      <CreateTaskGroupButton workspaceId={memoizedDisplayedWorkspaceId} />
     </div>
   );
 };

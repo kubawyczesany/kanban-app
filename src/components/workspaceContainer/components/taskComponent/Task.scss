@@ -52,12 +52,6 @@
     line-height: 20px;
   }
 }
-.task-button-add-subtask-container {
-  display: none;
-}
-.task:hover .task-button-add-subtask-container {
-  display: flex !important;
-}
 .task:hover {
   background-color: #f8faff !important;
 }

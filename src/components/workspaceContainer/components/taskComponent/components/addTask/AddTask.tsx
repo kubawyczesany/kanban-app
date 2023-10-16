@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { AddTaskTexts } from "./AddTask.texts";
-import { iconStyle } from "./AddTask.iconStyles";
 import "./AddTask.scss";
 import { useDispatch } from "react-redux";
-import { addTask } from "../../../../../store/slices/taskSlice";
-import { CloseIcon } from "../../../../../assets/icons/CloseIcon";
-import { PlusIcon } from "../../../../../assets/icons/PlusIcon";
+import { addTask } from "../../../../../../store/slices/taskSlice";
+import { CloseIcon } from "../../../../../../assets/icons/CloseIcon";
+import { PlusIcon } from "../../../../../../assets/icons/PlusIcon";
+import { iconStyle } from "../../TaskIconStyles";
+import { AddTaskTexts } from "./AddTaskTexts";
 
 interface AddTaskProps {
   taskGroupId: number | null;
@@ -98,13 +98,13 @@ export const AddTask = ({ taskGroupId }: AddTaskProps) => {
               className="add-task-container-close-button"
               onClick={handleButtonClick}
             >
-              <CloseIcon style={iconStyle} />
+              <CloseIcon style={iconStyle.plus} />
             </button>
           </span>
         </div>
       )}
       <button className="add-task-button" onClick={handleButtonClick}>
-        <PlusIcon style={iconStyle} />
+        <PlusIcon style={iconStyle.plus} />
         <p className="add-task-button-text">{AddTaskTexts.addCard}</p>
       </button>
     </>

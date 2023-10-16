@@ -1,22 +1,27 @@
 import { useSelector } from "react-redux";
 import "./TaskGroup.scss";
-import { AddTask } from "../../task/components";
-import { Task } from "../../task";
+import { Task } from "../../taskComponent";
 import { RootState } from "../../../../../store/store";
 import { Task as TaskInterface } from "../../../../../store/types";
+import { AddTask } from "../../taskComponent/components/addTask/AddTask";
+import { useMemo } from "react";
 
 interface TaskGroupProps {
-  taskGroupId: number | null;
+  id: number;
+  name: string;
+  workspaceId: number;
 }
 
-export const TaskGroup = ({ taskGroupId }: TaskGroupProps) => {
-  const task = useSelector((state: RootState) =>
-    state.task.filter((task) => task.taskGroupId === taskGroupId)
+export const TaskGroup = ({ id }: TaskGroupProps) => {
+  const tasks = useSelector((state: RootState) =>
+    state.task.filter((task) => task.taskGroupId === id)
   );
+
+  const memoizedTasks = useMemo(() => tasks, [tasks]);
 
   return (
     <>
-      {task.map((task: TaskInterface) => (
+      {memoizedTasks.map((task: TaskInterface) => (
         <Task
           key={task.id}
           id={task.id}
@@ -25,7 +30,7 @@ export const TaskGroup = ({ taskGroupId }: TaskGroupProps) => {
           taskGroupId={task.taskGroupId}
         />
       ))}
-      <AddTask taskGroupId={taskGroupId} />
+      <AddTask taskGroupId={id} />
     </>
   );
 };

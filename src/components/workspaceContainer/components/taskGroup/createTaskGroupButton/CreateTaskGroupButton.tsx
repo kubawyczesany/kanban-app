@@ -1,8 +1,8 @@
 import { useDispatch } from "react-redux";
 import "./CreateTaskGroupButton.scss";
 import { useState } from "react";
-import { iconStyle } from "./CreateTaskGroupButton.iconStyle";
-import { CreateTaskGroupButtonTexts } from "./CreateTaskGroupButton.texts";
+import { iconStyle } from "./CreateTaskGroupButtonIconStyle";
+import { CreateTaskGroupButtonTexts } from "./CreateTaskGroupButtonTexts";
 import { addTaskGroup } from "../../../../../store/slices/taskGroupSlice";
 import { CloseIcon } from "../../../../../assets/icons/CloseIcon";
 import { PlusIcon } from "../../../../../assets/icons/PlusIcon";
